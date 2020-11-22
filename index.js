@@ -10,12 +10,7 @@ const router = require('./router');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-io.origins((origin, callback) => {
-  if (origin !== 'https://chat-iset-mahdia.netlify.app/') {
-      return callback('origin not allowed', false);
-  }
-  callback(null, true);
-});
+io.origins('*:*')
 
 app.use(cors());
 app.use(router);
